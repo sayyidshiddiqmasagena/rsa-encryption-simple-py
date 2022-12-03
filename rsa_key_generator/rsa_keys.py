@@ -63,7 +63,7 @@ gunanya untuk menghitung "ketidaksamaan" faktor angka n
 dan kebetulan jika dia prima maka cukup Φ(n) = a-1 di mana a == prima
 '''
 r= (p-1)*(q-1)
-print("Eulers Toitent Φ(n) = ",r)
+print("Eulers Toitent Φ(n) = ",r, '\n')
  
 '''
 GCD --> greatest common divison / faktor persekutuan terbesar 
@@ -78,7 +78,7 @@ def egcd(e,r):
     return e
  
  
-#Extended Euclidean Algorithm --> optional tapi ini membuktikan bahwa e dan r faktornya = 1
+#Extended Euclidean Algorithm --> <bingunga ini>
 def eea(a,b):
     #cek lagi jika  e dan Φ(n) atau r bukan prima
     if(a%b==0):
@@ -87,10 +87,10 @@ def eea(a,b):
     else:
         gcd,s,t = eea(b,a%b)
         s = s-((a//b) * t)
-        print("%d = %d*(%d) + (%d)*(%d)"%(gcd,a,t,s,b))
+        print("EEA:  %d*(%d) + (%d)*(%d) = %d"%(a,t,s,b,gcd), )
         return(gcd,t,s)
  
-#Multiplicative Inverse
+#Multiplicative Inverse --> < seharusnya ini mi d ≡ modΦ(n)/e dari d x e ≡ modΦ(n)>
 def mult_inv(e,r):
     gcd,s,_=eea(e,r)
     # di sini variabel _ dipakai untuk simpan passingan dari 
@@ -98,9 +98,9 @@ def mult_inv(e,r):
         return None
     else:
         if(s<0):
-            print("s=%d. Since %d is less than 0, s = s(modr), i.e., s=%d."%(s,s,s%r))
+            print("MI, di mana s < 0: s = %d. Since %d is less than 0, s = s(modr), i.e., s=%d."%(s,s,s%r))
         elif(s>0):
-            print("s=%d."%(s))
+            print("MI, di mana s > 0: s = %d."%(s))
         return s%r
  
 '''
@@ -113,21 +113,12 @@ bisa juga ditentukan sembarang oleh user seperti pada buku, tapi belum tentu bis
 for i in range(1,1000):
     if(egcd(i,r)==1):
         e=i
-print("Nilai e = ",e)
+print("Mencari Public Key e = ",e, '\n')
 
-
-#d, Private and Public Keys
-# '''CALCULATION OF 'd', PRIVATE KEY, AND PUBLIC KEY.'''
-
-print("EUCLID'S EXTENDED ALGORITHM:")
 d = mult_inv(e,r)
-print("END OF THE STEPS USED TO ACHIEVE THE VALUE OF 'd'.")
-print("The value of d is:",d)
-print("*****************************************************")
-public = (e,n)
-private = (d,n)
-print("Private Key is:",private)
-print("Public Key is:",public)
-print("*****************************************************")
+print("Mencari Private Key d dengan extended euclid's algorithm = ", d, '\n')
+
+print("Public Key kamu adalah '%d' dengan gembok n = %d" %(e,n))
+print("Private Key kamu adalah '%d' dengan gembok n = %d" %(d,n), '\n')
 
 input('Press ENTER to exit') 
