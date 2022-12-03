@@ -68,21 +68,22 @@ print("Eulers Toitent Φ(n) = ",r)
 '''
 GCD --> greatest common divison / faktor persekutuan terbesar 
 GCD akan menentukan jika e sudah bisa dikatakan public exponent untuk menyelesaikan gcd(e,Φ(n)) = 1 terhadap Φ(n) --> Eulers Theorem
-syarat utamanya adalah e dan n tidak mempunyai faktor yang sama!
+syarat utamanya adalah e dan n hanya mempunyai faktor == 1
 '''
 
-#GCD mengecek 
+#GCD dari e dan Φ(n) atau r
 def egcd(e,r):
     while(r!=0):
         e,r=r,e%r
     return e
  
-
  
-#Extended Euclidean Algorithm
+#Extended Euclidean Algorithm --> optional tapi ini membuktikan bahwa e dan r faktornya = 1
 def eea(a,b):
+    #cek lagi jika  e dan Φ(n) atau r bukan prima
     if(a%b==0):
         return(b,0,1)
+
     else:
         gcd,s,t = eea(b,a%b)
         s = s-((a//b) * t)
@@ -92,6 +93,7 @@ def eea(a,b):
 #Multiplicative Inverse
 def mult_inv(e,r):
     gcd,s,_=eea(e,r)
+    # di sini variabel _ dipakai untuk simpan passingan dari 
     if(gcd!=1):
         return None
     else:
@@ -101,14 +103,19 @@ def mult_inv(e,r):
             print("s=%d."%(s))
         return s%r
  
-#e Value Calculation
-'''FINDS THE HIGHEST POSSIBLE VALUE OF 'e' BETWEEN 1 and 1000 THAT MAKES (e,r) COPRIME.'''
+'''
+e --> public exponent/key yang menyelesaikan d x e ≡ modΦ(n)
+di sini dicari i in range 1 sampai 1000 yang bisa menjadi faktor dari gcd(e,Φ(n)) = 1 atau egcd(e,r) == 1
+atau dengan kata lain e dan Φ(n) co-prime, yaitu sama-sama mempunyai faktor 1
+
+bisa juga ditentukan sembarang oleh user seperti pada buku, tapi belum tentu bisa memenuhi syarat gcd(e,Φ(n)) = 1
+'''
 for i in range(1,1000):
     if(egcd(i,r)==1):
         e=i
-print("The value of e is:",e)
-print("*****************************************************")
- 
+print("Nilai e = ",e)
+
+
 #d, Private and Public Keys
 # '''CALCULATION OF 'd', PRIVATE KEY, AND PUBLIC KEY.'''
 
