@@ -1,6 +1,4 @@
 '''
-WELCOME TO THE RSA KEY GENERATOR. THIS IS AN INTERACTIVE TOOL USED TO ENCRYPT OR DECRYPT A MESSAGE USING THE FAMOUS RSA ALGORITHM.
- 
 SAYYID SHIDDIQ MASAGENA (D121191014)
 A. MUH RAYYAN EKA PUTRA (D121191074)
 '''
@@ -8,63 +6,78 @@ A. MUH RAYYAN EKA PUTRA (D121191074)
 import math
 from pickle import FALSE
  
-print("RSA KEY GENERATOR")
-print("*****************************************************")
+print("=== Key Generator ===")
  
-#Input Prime Numbers
-print("PLEASE ENTER THE 'p' AND 'q' VALUES BELOW:")
-p = int(input("Enter a prime number for p: "))
-q = int(input("Enter a prime number for q: "))
-print("*****************************************************")
+#Input bilangan prima
+print("Masukkan angka prima: ")
+p = int(input("Bilangan prima 'p': "))
+q = int(input("Bilangan prima 'q': "))
 
-#Check if Input's are Prime
-'''THIS FUNCTION AND THE CODE IMMEDIATELY BELOW THE FUNCTION CHECKS WHETHER THE INPUTS ARE PRIME OR NOT.'''
-def prime_check(a):
-    if(a==2):
+#algoritma: check jika bilangan prima
+def cek_bil_prim(bil_prim):
+    #bil_prim passingan dari 'p' dan 'q'
+    if(bil_prim==2):
         return True
-    elif((a<2) or ((a%2)==0)):
+    elif((bil_prim<2) or ((bil_prim%2)==0)):
         return False
-    elif(a>2):
-        for i in range(2,a):
-            if not(a%i):
+    elif(bil_prim>2):
+        for i in range(2,bil_prim):
+            if not(bil_prim%i):
                 return FALSE
     return True
  
-check_p = prime_check(p)
-check_q = prime_check(q)
-while(((check_p==False)or(check_q==False))):
-    p = int(input("Enter a prime number for p: "))
-    q = int(input("Enter a prime number for q: "))
-    check_p = prime_check(p)
-    check_q = prime_check(q)
+#check jika bilangan prima
+cek_bil_prim_p = cek_bil_prim(p)
+cek_bil_prim_q = cek_bil_prim(q)
+
+#kalau tidak prima, masukkan angka kembali
+while(((cek_bil_prim_p==False)or(cek_bil_prim_q==False))):
+    print("==! Bukan angka prima, silahkan masukkan ulang !==")
+    p = int(input("Bilangan prima 'p': "))
+    q = int(input("Bilangan prima 'q': "))
+    cek_bil_prim_p = cek_bil_prim(p)
+    cek_bil_prim_q = cek_bil_prim(q)
  
-#RSA Modulus
-'''CALCULATION OF RSA MODULUS 'n'.'''
+'''
+Pseudocode RSA Key Generation
+Referensi: "Understanding Cryptography by Christof Paar"
+
+1. 1. Choose two large primes p and q.
+2. Compute n = p · q.
+3. Compute Φ(n) = (p−1)(q−1).
+4. Select the public exponent e ∈ {1,2, . . . ,Φ(n)−1} such that
+gcd(e,Φ(n)) = 1.
+5. Compute the private key d such that: d x e ≡ modΦ(n)
+
+penjelasan rumus: https://youtu.be/wXB-V_Keiu8
+
+'''
+
+#RSA Modulus ---> mencari nilai n yg menjadi 'missing puzzle' untuk menyelesaikan p dan q
 n = p * q
-print("RSA Modulus(n) is:",n)
+print("RSA modulus n = ",n)
  
-#Eulers Toitent
-'''CALCULATION OF EULERS TOITENT 'r'.'''
+'''
+Eulers Toitent ---> r atau Φ(n) atau phi function, 
+gunanya untuk menghitung "ketidaksamaan" faktor angka n 
+dan kebetulan jika dia prima maka cukup Φ(n) = a-1 di mana a == prima
+'''
 r= (p-1)*(q-1)
-print("Eulers Toitent(r) is:",r)
-print("*****************************************************")
+print("Eulers Toitent Φ(n) = ",r)
  
-#GCD
-'''CALCULATION OF GCD FOR 'e' CALCULATION.'''
+'''
+GCD --> greatest common divison / faktor persekutuan terbesar 
+GCD akan menentukan jika e sudah bisa dikatakan public exponent untuk menyelesaikan gcd(e,Φ(n)) = 1 terhadap Φ(n) --> Eulers Theorem
+syarat utamanya adalah e dan n tidak mempunyai faktor yang sama!
+'''
+
+#GCD mengecek 
 def egcd(e,r):
     while(r!=0):
         e,r=r,e%r
     return e
  
-#Euclid's Algorithm
-def eugcd(e,r):
-    for i in range(1,r):
-        while(e!=0):
-            a,b=r//e,r%e
-            if(b!=0):
-                print("%d = %d*(%d) + %d"%(r,a,e,b))
-            r=e
-            e=b
+
  
 #Extended Euclidean Algorithm
 def eea(a,b):
@@ -97,11 +110,8 @@ print("The value of e is:",e)
 print("*****************************************************")
  
 #d, Private and Public Keys
-'''CALCULATION OF 'd', PRIVATE KEY, AND PUBLIC KEY.'''
-print("EUCLID'S ALGORITHM:")
-eugcd(e,r)
-print("END OF THE STEPS USED TO ACHIEVE EUCLID'S ALGORITHM.")
-print("*****************************************************")
+# '''CALCULATION OF 'd', PRIVATE KEY, AND PUBLIC KEY.'''
+
 print("EUCLID'S EXTENDED ALGORITHM:")
 d = mult_inv(e,r)
 print("END OF THE STEPS USED TO ACHIEVE THE VALUE OF 'd'.")
