@@ -1,6 +1,6 @@
 # rsa-encryption-simple-py
 
-@rayyanekaputra @sayyidsm
+` @rayyanekaputra @sayyidsm `
 Membuat encryption RSA dengan python in a simple way, nothing much to add
 
 Referensi:
