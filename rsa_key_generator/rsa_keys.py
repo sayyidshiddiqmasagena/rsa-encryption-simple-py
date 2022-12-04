@@ -77,29 +77,41 @@ def egcd(e,r):
         e,r=r,e%r
     return e
  
+'''
+EEA --> extended euclidean algorithm / algoritma euclidean lanjutan 
+Selain menghitung GCD, EEA juga digunakan untuk menemukan koefisien integer s dan t dengan: as + bt = gcd(a,b)
+Extended Euclidean Algorithm menemukan s dan t dengan menggunakan substitusi balik untuk menulis ulang persamaan algoritma pembagian
+secara rekursif hingga mendapatkan persamaan yang merupakan kombinasi linier dari bilangan awal.
+''' 
  
-#Extended Euclidean Algorithm --> <bingunga ini>
+#Extended Euclidean Algorithm
 def eea(a,b):
     #cek lagi jika  e dan Φ(n) atau r bukan prima
     if(a%b==0):
         return(b,0,1)
-
     else:
         gcd,s,t = eea(b,a%b)
         s = s-((a//b) * t)
         print("EEA:  %d*(%d) + (%d)*(%d) = %d"%(a,t,s,b,gcd), )
         return(gcd,t,s)
+    #proses gcd pada eea sama saja pada gcd biasa, tetapi sebagai tambahan kita mengupdate nilai s dan t pada akhir setiap recursive call
  
-#Multiplicative Inverse --> < seharusnya ini mi d ≡ modΦ(n)/e dari d x e ≡ modΦ(n)>
+'''
+MI --> multiplicative inverse atau lebih tepatnya modular multiplicative inverse
+Modular multiplicative invers dari suatu bilangan bulat d adalah bilangan bulat e sedemikian rupa sehingga perkalian d x e kongruen dengan 1 terhadap modulus Φ(n) --> d x e ≡ 1 modΦ(n)
+Untuk menentukan nilai d, maka dilakukan pengecekan modular multiplicative inverse terhadap s(hasil dari eea terhadap e,r) dan Φ(n) atau r
+''' 
+
+#Multiplicative Inverse -->
 def mult_inv(e,r):
     gcd,s,_=eea(e,r)
-    # di sini variabel _ dipakai untuk simpan passingan dari 
+    # di sini variabel _ dipakai untuk simpan passingan dari ...
     if(gcd!=1):
-        return None
-    else:
-        if(s<0):
+        return None #jika nilai gcd e dan Φ(n) atau r bukan 1, maka modular multiplicative inverse tidak exist
+    else: 
+        if(s<0): #nilai s negatif
             print("MI, di mana s < 0: s = %d. Since %d is less than 0, s = s(modr), i.e., s=%d."%(s,s,s%r))
-        elif(s>0):
+        elif(s>0): #nilai s positif
             print("MI, di mana s > 0: s = %d."%(s))
         return s%r
  
