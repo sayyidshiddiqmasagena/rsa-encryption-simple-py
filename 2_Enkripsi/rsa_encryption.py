@@ -17,8 +17,8 @@ public = (e,n)
 #Algoritma Enkripsi
 def encrypt(pub_key,n_text): #(public, message)
     e,n=pub_key
-    x=[]
-    m=0
+    x=[] #pesan dalam bentuk string
+    m=0 #pesan dalam bentuk integer
     for i in n_text:
         if(i.isupper()):
             m = ord(i)-65 #codepoint utk unicode 65 --> A 
@@ -43,9 +43,12 @@ def encrypt(pub_key,n_text): #(public, message)
             
     return x
  
-
-message = input("Pesan yang ingin dienkripsi (untuk saat ini hanya bisa text):  ")
-print("Pesanmu adalah:",message)
-enc_msg=encrypt(public,message)
-print("\nPesan kamu yang terenkripsi:")
-print(*enc_msg, sep = ', ', end="\n")
+def main():
+    message = input("Pesan yang ingin dienkripsi (untuk saat ini hanya bisa text):  ")
+    print("Pesanmu adalah:",message)
+    enc_msg=encrypt(public,message)
+    print("\nPesan kamu yang terenkripsi:")
+    print(*enc_msg, sep = ', ', end="\n")
+    return enc_msg
+    
+main()

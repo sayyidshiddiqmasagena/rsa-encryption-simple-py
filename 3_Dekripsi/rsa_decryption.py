@@ -18,23 +18,26 @@ private = (d,n)
 def decrypt(priv_key,c_text):
     d,n=priv_key
     txt=c_text.split(',') #string dalam list harus diconvert jdi int
-    x=''
-    m=0
+    x='' #pesan dalam bentuk string
+    m=0 #pesan dalam bentuk integer
     for i in txt:
         if(int(i)== 400):
             x+=' '
         else:
             m=(int(i)**d)%n #enkripsi^private key mod n, utk mendekripsi ada di buku
-
             m+=65 #supaya semuanya mulai dari 0
             c=chr(m) #int --> char
             x+=c #membentuk string tiap char tanpa list --> karena c != [] tapi c = ''
     return x
- 
 
-message = input("Pesan yang ingin dienkripsi (untuk saat ini hanya bisa text):  ")
-print("Pesanmu adalah:",message)
-enc_msg=decrypt(private,message)
+def main(): 
+    message = input("Pesan yang ingin dekripsi (masukkan dengan koma (,)):  ")
+    print("Pesanmu kini adalah:",message)
+    enc_msg=decrypt(private,message)
 
-print("\nPesan kamu yang terenkripsi:")
-print(enc_msg, end="\n")
+    print("\nPesan kamu yang telah terdekripsi:")
+    print(enc_msg, end="\n")
+
+    return enc_msg
+
+main()

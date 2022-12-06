@@ -121,15 +121,18 @@ atau dengan kata lain e dan Φ(n) co-prime, yaitu sama-sama mempunyai faktor 1
 
 bisa juga ditentukan sembarang oleh user seperti pada buku, tapi belum tentu bisa memenuhi syarat gcd(e,Φ(n)) = 1
 '''
-for i in range(1,1000):
-    if(egcd(i,r)==1):
-        e=i
-print("Mencari Public Key e = ",e, '\n')
 
-d = mult_inv(e,r)
-print("Mencari Private Key d dengan extended euclid's algorithm = ", d, '\n')
+def main():
+    for i in range(1,1000):
+        if(egcd(i,r)==1):
+            e=i
+    print("Mencari Public Key e = ",e, '\n')
 
-print("Public Key kamu adalah d = '%d' dengan gembok n = %d" %(e,n))
-print("Private Key kamu adalah e = '%d' dengan gembok n = %d" %(d,n), '\n')
+    d = mult_inv(e,r)
+    print("Mencari Private Key d dengan extended euclid's algorithm = ", d, '\n')
 
-input('Press ENTER to exit') 
+    print("Public Key kamu adalah d = '%d' dengan gembok n = %d" %(e,n))
+    print("Private Key kamu adalah e = '%d' dengan gembok n = %d" %(d,n), '\n')
+    return e, d, n
+
+main()
