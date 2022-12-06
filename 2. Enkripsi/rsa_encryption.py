@@ -47,8 +47,7 @@ def encrypt(pub_key,n_text): #(public, message)
  
 
 message = input("Pesan yang ingin dienkripsi (untuk saat ini hanya bisa text):  ")
-print("pesanmu adalah:",message)
+print("Pesanmu adalah:",message)
 enc_msg=encrypt(public,message)
-print("Pesan kamu yang terenkripsi:",*enc_msg, sep = ', ')
-
-input('Press ENTER to exit') 
+print("\nPesan kamu yang terenkripsi:")
+print(*enc_msg, sep = ', ', end="\n")
