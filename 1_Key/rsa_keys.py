@@ -129,7 +129,7 @@ print("Mencari Public Key e = ",e, '\n')
 d = mult_inv(e,r)
 print("Mencari Private Key d dengan extended euclid's algorithm = ", d, '\n')
 
-print("Public Key kamu adalah '%d' dengan gembok n = %d" %(e,n))
-print("Private Key kamu adalah '%d' dengan gembok n = %d" %(d,n), '\n')
+print("Public Key kamu adalah d = '%d' dengan gembok n = %d" %(e,n))
+print("Private Key kamu adalah e = '%d' dengan gembok n = %d" %(d,n), '\n')
 
 input('Press ENTER to exit') 

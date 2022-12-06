@@ -39,7 +39,7 @@ def decrypt(priv_key,c_text):
     return x
  
 message = input("What message would you like to be decrypted?:  ")
-print("Your message is:",message)
+print("Your message is:", message)
 
 enc_msg=decrypt(private,message)
 print("Your decrypted message is:",enc_msg)
