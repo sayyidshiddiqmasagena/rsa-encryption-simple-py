@@ -53,7 +53,7 @@ penjelasan rumus: https://youtu.be/wXB-V_Keiu8
 
 '''
 
-#RSA Modulus ---> mencari nilai n yg menjadi 'missing puzzle' untuk menyelesaikan p dan q
+#RSA Modulus ---> mencari nilai n yg menjadi 'missing puzzle' atau 'gembok' untuk menyelesaikan p dan q
 n = p * q
 print("RSA modulus n = ",n)
  
@@ -104,14 +104,13 @@ Untuk menentukan nilai d, maka dilakukan pengecekan modular multiplicative inver
 
 #Multiplicative Inverse -->
 def mult_inv(e,r):
-    gcd,s,_=eea(e,r)
-    # di sini variabel _ dipakai untuk simpan passingan dari ...
+    gcd,s,_=eea(e,r) #terima input dari line 91 dan line 96, _ tidak dipakai
     if(gcd!=1):
         return None #jika nilai gcd e dan Φ(n) atau r bukan 1, maka modular multiplicative inverse tidak exist
     else: 
-        if(s<0): #nilai s negatif
+        if(s<0): 
             print("MI, di mana s < 0: s = %d. Since %d is less than 0, s = s(modr), i.e., s=%d."%(s,s,s%r))
-        elif(s>0): #nilai s positif
+        elif(s>0): 
             print("MI, di mana s > 0: s = %d."%(s))
         return s%r
  

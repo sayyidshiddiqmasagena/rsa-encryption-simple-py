@@ -24,31 +24,25 @@ print("*****************************************************")
 '''DECRYPTION ALGORITHM.'''
 def decrypt(priv_key,c_text):
     d,n=priv_key
-    txt=c_text.split(',')
+    txt=c_text.split(',') #string dalam list harus diconvert jdi int
     x=''
     m=0
     for i in txt:
-        if(i=='400'):
+        if(int(i)== 400):
             x+=' '
         else:
-            m=(int(i)**d)%n
-            m+=65
-            c=chr(m)
-            x+=c
+            m=(int(i)**d)%n #enkripsi^private key mod n, utk mendekripsi
+
+            m+=65 #supaya semuanya mulai dari 0
+            c=chr(m) #int --> char
+            x+=c #membentuk string tiap char tanpa list
     return x
  
 message = input("What message would you like to be decrypted?:  ")
 print("Your message is:",message)
- 
-choose = input("Type 'yes' to decrypt the message or 'no' to quit: ")
-if(choose=='yes'):
-    enc_msg=decrypt(private,message)
-    print("Your decrypted message is:",enc_msg)
-    print("Thank you for using the RSA Decryptor. Goodbye!")
-elif(choose=='no'):
-    print("Thank you for using the RSA Decryptor. Goodbye!")
-else:
-    print("You entered the wrong option.")
-    print("Thank you for using the RSA Decryptor. Goodbye!")
+
+enc_msg=decrypt(private,message)
+print("Your decrypted message is:",enc_msg)
+print("Thank you for using the RSA Decryptor. Goodbye!")
 
 input('Press ENTER to exit') 
