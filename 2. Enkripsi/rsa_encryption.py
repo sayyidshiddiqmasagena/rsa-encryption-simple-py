@@ -8,39 +8,31 @@ A. MUH RAYYAN EKA PUTRA (D121191074)
 import math
 from pickle import FALSE
  
-print("RSA ENCRYPTION")
-print("*****************************************************")
+print("=== RSA Enkripsi ===")
  
-print("PLEASE ENTER THE 'e' AND 'n' VALUES BELOW:")
-e = int(input("Enter the value of public key 'e': "))
-n = int(input("Enter the value of number 'n': "))
+print("Masukkan public key 'e' dan gembok 'n'-mu!")
+e = int(input("public key 'e': "))
+n = int(input("gembok 'n': "))
 
-print("*****************************************************")
-print("PUBLIC KEY")
 public = (e,n)
-print("Public Key is:",public)
-print("*****************************************************")
- 
-'''ENCRYPTION ALGORITHM.'''
+
+#Algoritma Enkripsi
 def encrypt(pub_key,n_text): #(public, message)
     e,n=pub_key
     x=[]
     m=0
     for i in n_text:
         if(i.isupper()):
-            print('terbaca di isupper')
             m = ord(i)-65 #codepoint utk unicode 65 --> A 
-            c=(m**e)%n
+            c=(m**e)%n #algoritmanya
             # x = 'terbaca sbg text/char capslock'
             x.append(c)
-        elif(i.islower()):      
-            print('terbaca di islower')         
+        elif(i.islower()):         
             m= ord(i)-97 #codepoint utk unicode 97 --> a
             c=(m**e)%n
             # x = 'terbaca sbg text/char lowercase'
             x.append(c)
         elif(i.isspace()):
-            print('terbaca di isspace')
             spc=400
            # x = 'terbaca sbg text/char spasi
             x.append(400)
@@ -54,10 +46,9 @@ def encrypt(pub_key,n_text): #(public, message)
     return x
  
 
-message = input("What message would you like to be encrypted?:  ")
-print("Your message is:",message)
+message = input("Pesan yang ingin dienkripsi (untuk saat ini hanya bisa text):  ")
+print("pesanmu adalah:",message)
 enc_msg=encrypt(public,message)
-print("Your encrypted message is:",enc_msg)
-print("Thank you for using the RSA Encryptor. Goodbye!")
+print("Pesan kamu yang terenkripsi:",*enc_msg, sep = ', ')
 
 input('Press ENTER to exit') 
