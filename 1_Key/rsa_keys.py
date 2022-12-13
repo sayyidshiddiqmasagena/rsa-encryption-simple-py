@@ -2,7 +2,18 @@
 SAYYID SHIDDIQ MASAGENA (D121191014)
 A. MUH RAYYAN EKA PUTRA (D121191074)
 '''
- 
+
+'''
+rsa_keys merupakan aplikasi yang berfungsi untuk membuat atau meng-generate kunci public, kunci private, dan gembok
+yang dibutuhkan dalam proses kriptografi rsa (asimetris). public key digunakan untuk enkripsi, private key digunakan
+untuk dekripsi, sementara gembok adalah variabel yang diketahui oleh semua pihak. Teori dasarnya ialah kunci public,
+private, dan gembok di generate melalui perkalian dua buah bilangan prima yang hanya diketahui oleh pihak decryptor.
+Lalu dilaksanakan berbagai proses matematis seperti faktorisasi prima euclid (menambah time complexity) dan euler
+(phi function (Φ)) serta kaitannya dengan eksponensial modular (mod) agar dapat di inverse. Setelah melalui proses
+matematis tersebut, maka selama pihak public tidak mengetahui kedua bilangan prima awal (p dan q), maka akan sangat
+sulit untuk menentukan nilai dari private key-nya.
+'''
+
 import math
 from pickle import FALSE
  
