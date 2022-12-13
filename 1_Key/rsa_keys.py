@@ -147,3 +147,11 @@ def main():
     return e, d, n
 
 main()
+
+'''
+kesimpulan dari rsa_keys yang merupakan key dan gembok generator ialah bahwa pelaku key generator harus mengetahui berbagai
+bilangan prima dan menentukan bilangan prima mana yang akan digunakan sebagai nilai dasar key generator. Semakin besar nilai
+bilangan prima yang digunakan, maka akan semakin sulit untuk di serang/crack. Namun, hal ini tentunya membutuhkan kemampuan
+komputasi yang tinggi dari device yang digunakan oleh decryptor. Apabila device tidak memiliki tingkat komputasi yang memadai,
+maka proses dekripsi akan membutuhkan waktu yang cukup lama meskipun dengan private key.
+'''
