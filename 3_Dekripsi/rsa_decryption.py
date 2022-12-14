@@ -3,6 +3,14 @@ SAYYID SHIDDIQ MASAGENA (D121191014)
 A. MUH RAYYAN EKA PUTRA (D121191074)
 '''
  
+'''
+rsa_decryption merupakan aplikasi yang berfungsi untuk mendekripsi data ciphertext (sandi berupa sederetan bit) yakni melakukan
+rekayasa data (inverse dari enkripsi) sehingga data tersebut bertransformasi kembali menjadi plaintext pengirim. Proses pendekripsian 
+ini dapat dilaksanakan selama pihak decryptor memiliki dua komponen dekripsi yakni gembok (n) dan private key (d) yang disimpan dan
+dirahasiakan dari pihak public semejak proses key generator berlangsung. Algoritma utama dari enkripsi rsa adalah (c^d mod n ≡ m),
+dimana c (ciphertext) dipangkatkan dengan d (private key) mod n (gembok) akan menghasilkan m (pesan awal pengirim (plaintext)).
+'''
+
 import math
 from pickle import FALSE
  
