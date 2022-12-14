@@ -2,7 +2,18 @@
 SAYYID SHIDDIQ MASAGENA (D121191014)
 A. MUH RAYYAN EKA PUTRA (D121191074)
 '''
- 
+
+'''
+rsa_keys merupakan aplikasi yang berfungsi untuk membuat atau meng-generate kunci public, kunci private, dan gembok
+yang dibutuhkan dalam proses kriptografi rsa (asimetris). public key digunakan untuk enkripsi, private key digunakan
+untuk dekripsi, sementara gembok adalah variabel yang diketahui oleh semua pihak. Teori dasarnya ialah kunci public,
+private, dan gembok di generate melalui perkalian dua buah bilangan prima yang hanya diketahui oleh pihak decryptor.
+Lalu dilaksanakan berbagai proses matematis seperti faktorisasi prima euclid (menambah time complexity) dan euler
+(phi function (Φ)) serta kaitannya dengan eksponensial modular (mod) agar dapat di inverse. Setelah melalui proses
+matematis tersebut, maka selama pihak public tidak mengetahui kedua bilangan prima awal (p dan q), maka akan sangat
+sulit untuk menentukan nilai dari private key-nya.
+'''
+
 import math
 from pickle import FALSE
  
@@ -53,7 +64,7 @@ penjelasan rumus: https://youtu.be/wXB-V_Keiu8
 
 '''
 
-#RSA Modulus ---> mencari nilai n yg menjadi 'missing puzzle' untuk menyelesaikan p dan q
+#RSA Modulus ---> mencari nilai n yg menjadi 'missing puzzle' atau 'gembok' untuk menyelesaikan p dan q
 n = p * q
 print("RSA modulus n = ",n)
  
@@ -104,14 +115,13 @@ Untuk menentukan nilai d, maka dilakukan pengecekan modular multiplicative inver
 
 #Multiplicative Inverse -->
 def mult_inv(e,r):
-    gcd,s,_=eea(e,r)
-    # di sini variabel _ dipakai untuk simpan passingan dari ...
+    gcd,s,_=eea(e,r) #terima input dari line 91 dan line 96, _ tidak dipakai
     if(gcd!=1):
         return None #jika nilai gcd e dan Φ(n) atau r bukan 1, maka modular multiplicative inverse tidak exist
     else: 
-        if(s<0): #nilai s negatif
+        if(s<0): 
             print("MI, di mana s < 0: s = %d. Since %d is less than 0, s = s(modr), i.e., s=%d."%(s,s,s%r))
-        elif(s>0): #nilai s positif
+        elif(s>0): 
             print("MI, di mana s > 0: s = %d."%(s))
         return s%r
  
@@ -122,15 +132,26 @@ atau dengan kata lain e dan Φ(n) co-prime, yaitu sama-sama mempunyai faktor 1
 
 bisa juga ditentukan sembarang oleh user seperti pada buku, tapi belum tentu bisa memenuhi syarat gcd(e,Φ(n)) = 1
 '''
-for i in range(1,1000):
-    if(egcd(i,r)==1):
-        e=i
-print("Mencari Public Key e = ",e, '\n')
 
-d = mult_inv(e,r)
-print("Mencari Private Key d dengan extended euclid's algorithm = ", d, '\n')
+def main():
+    for i in range(1,1000):
+        if(egcd(i,r)==1):
+            e=i
+    print("Mencari Public Key e = ",e, '\n')
 
-print("Public Key kamu adalah '%d' dengan gembok n = %d" %(e,n))
-print("Private Key kamu adalah '%d' dengan gembok n = %d" %(d,n), '\n')
+    d = mult_inv(e,r)
+    print("Mencari Private Key d dengan extended euclid's algorithm = ", d, '\n')
 
-input('Press ENTER to exit') 
+    print("Public Key kamu adalah d = '%d' dengan gembok n = %d" %(e,n))
+    print("Private Key kamu adalah e = '%d' dengan gembok n = %d" %(d,n), '\n')
+    return e, d, n
+
+main()
+
+'''
+kesimpulan dari rsa_keys yang merupakan key dan gembok generator ialah bahwa pelaku key generator harus mengetahui berbagai
+bilangan prima dan menentukan bilangan prima mana yang akan digunakan sebagai nilai dasar key generator. Semakin besar nilai
+bilangan prima yang digunakan, maka akan semakin sulit untuk di serang/crack. Namun, hal ini tentunya membutuhkan kemampuan
+komputasi yang tinggi dari device yang digunakan oleh decryptor. Apabila device tidak memiliki tingkat komputasi yang memadai,
+maka proses dekripsi akan membutuhkan waktu yang cukup lama meskipun dengan private key.
+'''
