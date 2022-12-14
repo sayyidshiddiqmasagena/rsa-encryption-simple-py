@@ -3,6 +3,14 @@ SAYYID SHIDDIQ MASAGENA (D121191014)
 A. MUH RAYYAN EKA PUTRA (D121191074)
 '''
  
+'''
+rsa_encryption merupakan aplikasi yang berfungsi untuk mengenkripsi data plaintext (teks/angka) yakni melakukan rekayasa data
+sehingga data tersebut berubah menjadi sandi (ciphertext) yang berupa sederetan bit. Proses pengenkripsian ini dapat dilaksanakan
+selama pihak encryptor memiliki dua komponen enkripsi yakni gembok (n) dan public key (e) yang didapatkan dari pihak key generator.
+Algoritma utama dari enkripsi rsa adalah (m^e mod n ≡ c), dimana m (pesan plain text) dipangkatkan dengan e (public key) mod n (gembok)
+akan menghasilkan c (ciphertext).
+'''
+
 import math
 from pickle import FALSE
  
