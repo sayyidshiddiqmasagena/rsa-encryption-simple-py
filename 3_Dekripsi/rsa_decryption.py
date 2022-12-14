@@ -49,3 +49,15 @@ def main():
     return enc_msg
 
 main()
+
+'''
+kesimpulan dari rsa_decryption adalah ciphertext yang ingin ditransformasi menjadi plaintext membutuhkan dua variabel dasar yakni
+gembok (n) dan private key (e). Seperti pada kasus rsa_encryption karena hanya dapat memilih antara menggunakan full text atau
+full integer, maka aplikasi rsa_decryption juga menyesuaikan proses komputasinya. Tetap dibutuhkan for loop dengan percabangan
+if-else yang dipisah dengan simbol koma (,) untuk mendeteksi tiap char itu upper, lower, atau black space. Pihak encryptor hanya
+perlu mengirimkan nilai dari ciphertext (c) kepada public tanpa perlu khawatir orang lain (man in the middle) untuk mengetahui
+isi dari c bahkan jika mereka mengetahui algoritma dari rsa. Hal ini dikarenakan, selama public tidak mengetahui private key (d)
+maka akan sangat sulit untuk mendekripsi ciphertext (c) meskipun memiliki gembok (n). Bahkan jika MITD (man in the middle) ingin
+merekayasa private key dari c dan n, mereka tetap membutuhkan waktu bertahun-tahun (time complexity faktorisasi prima) jika mereka
+tidak mengetahui kedua bilangan prima awal yang digunakan oleh pihak key generator.
+'''
