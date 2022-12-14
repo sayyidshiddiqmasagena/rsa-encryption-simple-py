@@ -60,3 +60,14 @@ def main():
     return enc_msg
     
 main()
+
+'''
+kesimpulan dari rsa_encryption adalah pesan yang ingin ditransformasi menjadi ciphertext membutuhkan dua variabel dasar yakni
+gembok (n) dan public key (e). Idealnya, data plain text (m) yang ingin dienkripsi dapat berupa gabungan dari string, integer,
+simbol, dan sebagainya. Namun, pada kasus saat ini aplikasi rsa_encryption hanya dapat memilih antara menggunakan full string
+atau full integer. Hal ini dikarenakan kami belum menemukan proses komputasi yang tepat dalam penggabungan semua tipe data tersebut.
+Jika ingin menggunakan tipe data full text, maka diperlukan algoritma for-loop yang mengenkripsi tiap char melalui percabangan if-else
+dan mendeteksi apakah char tersebut upper, lower, atau blank space. Untuk memudahkan proses enkripsi dan dekripsi, tiap char/int
+dipisah menggunakan simbol koma (,) meskipun tentunya akan lebih mudah bagi pihak lain untuk menerka pola dari ciphertext.
+Semakin panjang plaintext, maka proses komputasi enkripsi akan relatif lebih lama tetapi tidak selama proses dekripsi.
+'''
